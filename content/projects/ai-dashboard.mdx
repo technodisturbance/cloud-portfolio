@@ -1,0 +1,37 @@
+---
+title: "AI Dashboard"
+publishedAt: "2025-11-03"
+summary: "Central AI operations hub built with Next.js 15, featuring npm workspaces, Supabase integration readiness, and n8n automation pipelines."
+tags: ["Next.js", "TypeScript", "Supabase", "Docker", "n8n"]
+state: "WIP"
+---
+
+## Overview
+An experimental control center for AI research and operations. Built with Next.js App Router, designed to surface insights from external automations (Supabase, PostHog, n8n, SerpAPI).
+
+## Tech Stack
+- **Frontend:** Next.js 15, React 19, Tailwind CSS v4
+- **Tooling:** Husky git hooks, ESLint, Prettier, Commitlint
+- **Architecture:** npm workspaces, conventional commits
+- **Status:** Phase 1b complete (baseline app), ready for Supabase integration
+
+## Key Features
+- Opinionated DX with quality gates
+- Hot reload development environment
+- Foundation for vector search and background jobs
+- Comprehensive documentation (ADRs, troubleshooting guides)
+
+## What I Learned
+- Git SSH authentication workflow (replaced HTTPS)
+- Monorepo integration patterns
+- Nested repository cleanup (`rm -rf .git` for subfolder integration)
+- npm workspaces for multi-package projects
+
+## Links
+- [GitHub Repo](https://github.com/technodisturbance/ai-dashboard)
+- [Local Dev](http://localhost:3000) _(when running)_
+
+## Next Steps
+- Deploy to Vercel
+- Integrate Supabase local environment
+- Add PostHog event instrumentation
