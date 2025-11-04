@@ -1,4 +1,6 @@
 import { BlogPosts } from 'app/components/posts'
+import { ProjectPosts } from 'app/components/projects'
+import Link from 'next/link'
 
 export default function Page() {
   return (
@@ -7,13 +9,25 @@ export default function Page() {
         My Portfolio
       </h1>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        {`Cloud engineer building production systems with modern infrastructure tools. 
+        Specializing in IaC, containers, and CI/CD pipelines.`}
       </p>
+      
       <div className="my-8">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Projects</h2>
+          <Link 
+            href="/projects" 
+            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            View all →
+          </Link>
+        </div>
+        <ProjectPosts />
+      </div>
+
+      <div className="my-8">
+        <h2 className="text-xl font-semibold mb-4">Recent Posts</h2>
         <BlogPosts />
       </div>
     </section>
