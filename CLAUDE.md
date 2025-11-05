@@ -36,16 +36,31 @@ The architecture follows a **nested monorepo pattern** where:
 - Prettier for code formatting
 - Commitlint for conventional commits
 
+## Package Manager
+
+**This repository uses pnpm as the primary package manager.**
+
+- Lockfile: `pnpm-lock.yaml`
+- Install pnpm: `npm install -g pnpm`
+- Version: pnpm 10.x or later
+
+**IMPORTANT:** Always use `pnpm` for installing/updating dependencies. Using `npm install` will create `package-lock.json` and cause deployment conflicts with Vercel. See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) for details.
+
 ## Common Commands
 
 ### Portfolio Site (Root)
 ```bash
+# Package Management
+pnpm install         # Install all dependencies
+pnpm add <package>   # Add a dependency
+pnpm remove <pkg>    # Remove a dependency
+
 # Development
-npm run dev          # Start development server on http://localhost:3000
+pnpm dev             # Start development server on http://localhost:3000
 
 # Build & Deploy
-npm run build        # Production build
-npm start            # Start production server
+pnpm build           # Production build
+pnpm start           # Start production server
 ```
 
 ### AI Dashboard Project
@@ -53,16 +68,20 @@ npm start            # Start production server
 # Navigate to project first
 cd projects/ai-dashboard
 
+# Package Management
+pnpm install         # Install all dependencies
+pnpm add <package>   # Add a dependency (runs from ./web)
+
 # Development
-npm run dev          # Start development server (runs from ./web)
+pnpm dev             # Start development server (runs from ./web)
 
 # Build & Deploy
-npm run build        # Production build (runs from ./web)
-npm start            # Start production server (runs from ./web)
+pnpm build           # Production build (runs from ./web)
+pnpm start           # Start production server (runs from ./web)
 
 # Code Quality
-npm run lint         # Run ESLint on all files
-npm run format       # Format all files with Prettier
+pnpm lint            # Run ESLint on all files
+pnpm format          # Format all files with Prettier
 
 # Git Hooks (automatic)
 # Pre-commit: Auto-formats staged files with Prettier
@@ -145,17 +164,19 @@ The portfolio site parses this metadata to generate project cards and detail pag
 ## Development Workflow
 
 ### Working on Portfolio Site
-1. Make changes in `/app`, `/content`, or root-level files
-2. Test with `npm run dev` from root
-3. Commit changes (no special conventions required)
+1. Install dependencies: `pnpm install`
+2. Make changes in `/app`, `/content`, or root-level files
+3. Test with `pnpm dev` from root
+4. Commit changes (no special conventions required)
 
 ### Working on AI Dashboard
 1. Navigate to `cd projects/ai-dashboard`
-2. Make changes in `./web/src`
-3. Test with `npm run dev`
-4. Stage files: Pre-commit hook auto-formats with Prettier
-5. Commit with conventional format: `feat: description`, `fix: description`, etc.
-6. Commit-msg hook validates format
+2. Install dependencies: `pnpm install`
+3. Make changes in `./web/src`
+4. Test with `pnpm dev`
+5. Stage files: Pre-commit hook auto-formats with Prettier
+6. Commit with conventional format: `feat: description`, `fix: description`, etc.
+7. Commit-msg hook validates format
 
 ### Adding New Projects to Portfolio
 1. Create project codebase in `/projects/new-project/`
@@ -192,8 +213,16 @@ Both applications are optimized for Vercel:
 
 ## Important Notes
 
+- **Package Manager:** Always use `pnpm` for this repository. Do not use `npm install` as it will create lockfile conflicts.
 - The portfolio uses **Tailwind CSS v4 alpha** - syntax and configuration differ from v3
 - AI Dashboard uses **React 19** and **Next.js 15** - check compatibility when adding dependencies
 - MDX parsing happens server-side using `next-mdx-remote`
 - Syntax highlighting uses `sugar-high` (lightweight, no external dependencies)
 - No test framework is currently configured in either project
+
+## Troubleshooting
+
+For common issues and solutions, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md):
+- Package manager and lockfile conflicts
+- Vercel deployment errors
+- Dependency management best practices
